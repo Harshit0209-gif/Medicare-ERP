@@ -37,12 +37,12 @@ export default function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose
       )}>
         {/* Text logo — hidden when collapsed on desktop */}
         <div className={clsx('overflow-hidden flex-1', collapsed && 'lg:hidden')}>
-          <p className="text-white font-semibold text-[15px] leading-tight tracking-tight">Medicare ERP</p>
+          <p className="text-white font-semibold text-[15px] leading-tight tracking-tight">GOBT ERP</p>
           <p className="text-slate-500 text-[11px] font-medium">Medical Inventory</p>
         </div>
         {/* Collapsed icon — desktop only */}
         {collapsed && (
-          <p className="text-white font-bold text-[13px] tracking-tight hidden lg:block">M</p>
+          <p className="text-white font-bold text-[13px] tracking-tight hidden lg:block">G</p>
         )}
         {/* Mobile close button */}
         <button

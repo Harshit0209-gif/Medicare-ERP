@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Eye, EyeOff, Shield, User, LogIn, AlertCircle, CheckCircle } from 'lucide-react'
 
 const DEMO_ACCOUNTS = {
-  admin: { email: 'admin@medicare-erp.com', password: 'admin123', name: 'Dr. Harsh Agarwal', role: 'Administrator', avatar: 'HA' },
-  user:  { email: 'user@medicare-erp.com',  password: 'user123',  name: 'Priya Sharma',      role: 'Staff',         avatar: 'PS' },
+  admin: { email: 'admin@gobt-erp.com', password: 'admin123', name: 'Dr. Harsh Agarwal', role: 'Administrator', avatar: 'HA' },
+  user:  { email: 'user@gobt-erp.com',  password: 'user123',  name: 'Priya Sharma',      role: 'Staff',         avatar: 'PS' },
 }
 
 
@@ -49,7 +49,7 @@ export default function Login({ onLogin }) {
 
         {/* Top logo */}
         <div className="relative z-10">
-          <p className="text-white font-semibold text-[17px] tracking-tight">Medicare ERP</p>
+          <p className="text-white font-semibold text-[17px] tracking-tight">GOBT ERP</p>
           <p className="text-slate-500 text-[12px]">Medical Inventory System</p>
         </div>
 
@@ -77,7 +77,7 @@ export default function Login({ onLogin }) {
           </div>
         </div>
 
-        <p className="relative z-10 text-slate-700 text-[11px]">© 2024 Medicare ERP · All rights reserved</p>
+        <p className="relative z-10 text-slate-700 text-[11px]">© 2024 GOBT ERP · All rights reserved</p>
       </div>
 
       {/* ── Right panel ── */}
@@ -85,7 +85,7 @@ export default function Login({ onLogin }) {
         <div className="w-full max-w-[400px] animate-fadeIn">
           {/* Mobile logo */}
           <div className="mb-8 lg:hidden">
-            <p className="text-txt-primary font-bold text-[17px] tracking-tight">Medicare ERP</p>
+            <p className="text-txt-primary font-bold text-[17px] tracking-tight">GOBT ERP</p>
           </div>
 
           <div className="mb-7">

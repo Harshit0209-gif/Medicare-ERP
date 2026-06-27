@@ -107,11 +107,11 @@ export const kpiData = {
 }
 
 export const users = [
-  { id: 1, name: 'Dr. Harsh Agarwal', email: 'harsh@medicare-erp.com', role: 'Admin', department: 'Management', status: 'Active', lastLogin: '2024-12-10 09:15', avatar: 'HA' },
-  { id: 2, name: 'Priya Sharma', email: 'priya@medicare-erp.com', role: 'Pharmacist', department: 'Pharmacy', status: 'Active', lastLogin: '2024-12-10 08:42', avatar: 'PS' },
-  { id: 3, name: 'Rahul Gupta', email: 'rahul@medicare-erp.com', role: 'Store Manager', department: 'Inventory', status: 'Active', lastLogin: '2024-12-09 17:30', avatar: 'RG' },
-  { id: 4, name: 'Anita Patel', email: 'anita@medicare-erp.com', role: 'Sales Executive', department: 'Sales', status: 'Active', lastLogin: '2024-12-10 10:05', avatar: 'AP' },
-  { id: 5, name: 'Suresh Kumar', email: 'suresh@medicare-erp.com', role: 'Accountant', department: 'Finance', status: 'Inactive', lastLogin: '2024-11-28 14:20', avatar: 'SK' },
+  { id: 1, name: 'Dr. Harsh Agarwal', email: 'harsh@gobt-erp.com', role: 'Admin', department: 'Management', status: 'Active', lastLogin: '2024-12-10 09:15', avatar: 'HA' },
+  { id: 2, name: 'Priya Sharma', email: 'priya@gobt-erp.com', role: 'Pharmacist', department: 'Pharmacy', status: 'Active', lastLogin: '2024-12-10 08:42', avatar: 'PS' },
+  { id: 3, name: 'Rahul Gupta', email: 'rahul@gobt-erp.com', role: 'Store Manager', department: 'Inventory', status: 'Active', lastLogin: '2024-12-09 17:30', avatar: 'RG' },
+  { id: 4, name: 'Anita Patel', email: 'anita@gobt-erp.com', role: 'Sales Executive', department: 'Sales', status: 'Active', lastLogin: '2024-12-10 10:05', avatar: 'AP' },
+  { id: 5, name: 'Suresh Kumar', email: 'suresh@gobt-erp.com', role: 'Accountant', department: 'Finance', status: 'Inactive', lastLogin: '2024-11-28 14:20', avatar: 'SK' },
 ]
 
 export const paymentReceipts = [

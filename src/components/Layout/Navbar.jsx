@@ -15,7 +15,7 @@ const pageTitles = {
 export default function Navbar({ user, onLogout, onMenuOpen }) {
   const location = useLocation()
   const [showUser, setShowUser] = useState(false)
-  const title = pageTitles[location.pathname] || 'Medicare ERP'
+  const title = pageTitles[location.pathname] || 'GOBT ERP'
 
   return (
     <header className="h-14 lg:h-16 bg-white border-b border-border flex items-center gap-3 px-4 lg:px-6 flex-shrink-0 sticky top-0 z-30">

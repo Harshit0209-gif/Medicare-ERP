@@ -29,19 +29,19 @@ export default function Settings() {
   const [users, setUsers] = useState(initialUsers)
   const [profile, setProfile] = useState({
     name: 'Dr. Harsh Agarwal',
-    email: 'harsh@medicare-erp.com',
+    email: 'harsh@gobt-erp.com',
     phone: '+91 98765 43210',
     role: 'Administrator',
     department: 'Management',
     address: 'Mumbai, Maharashtra',
   })
   const [org, setOrg] = useState({
-    name: 'Medicare ERP',
+    name: 'GOBT ERP',
     gst: '27AABCM1234A1ZP',
     license: 'DL-MH-2024-00821',
     address: 'Plot 14, BKC, Mumbai, MH 400051',
     phone: '+91 22 4567 8900',
-    email: 'admin@medicare-erp.com',
+    email: 'admin@gobt-erp.com',
   })
   const [notif, setNotif] = useState({
     lowStock: true, expiry: true, newSale: false,
