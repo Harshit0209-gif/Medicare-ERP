@@ -113,3 +113,78 @@ export const users = [
   { id: 4, name: 'Anita Patel', email: 'anita@medicare-erp.com', role: 'Sales Executive', department: 'Sales', status: 'Active', lastLogin: '2024-12-10 10:05', avatar: 'AP' },
   { id: 5, name: 'Suresh Kumar', email: 'suresh@medicare-erp.com', role: 'Accountant', department: 'Finance', status: 'Inactive', lastLogin: '2024-11-28 14:20', avatar: 'SK' },
 ]
+
+export const paymentReceipts = [
+  { id: 'REC-2024-001', date: '2024-12-10', party: 'City Hospital',        amount: 4826,  mode: 'Bank Transfer', utr: 'HDFC2412100001', bank: 'HDFC Bank', status: 'Cleared', against: 'INV-2024-1028', remarks: '' },
+  { id: 'REC-2024-002', date: '2024-12-10', party: 'Wellness Clinic',      amount: 2194,  mode: 'Cash',          utr: '-',              bank: '-',         status: 'Cleared', against: 'INV-2024-1027', remarks: 'Counter payment' },
+  { id: 'REC-2024-003', date: '2024-12-09', party: 'MedCare Pharmacy',     amount: 8860,  mode: 'UPI',           utr: 'UPI2412090045',  bank: 'PhonePe',   status: 'Cleared', against: 'INV-2024-1026', remarks: '' },
+  { id: 'REC-2024-004', date: '2024-12-08', party: 'Dr. Priya Clinic',     amount: 1306,  mode: 'Cash',          utr: '-',              bank: '-',         status: 'Cleared', against: 'INV-2024-1024', remarks: '' },
+  { id: 'REC-2024-005', date: '2024-12-08', party: 'Apollo Pharmacy',      amount: 12707, mode: 'Card',          utr: 'TXN8812080092',  bank: 'SBI',       status: 'Cleared', against: 'INV-2024-1023', remarks: '' },
+  { id: 'REC-2024-006', date: '2024-12-07', party: 'LifeCare Stores',      amount: 3184,  mode: 'UPI',           utr: 'UPI2412070033',  bank: 'GPay',      status: 'Cleared', against: 'INV-2024-1021', remarks: '' },
+  { id: 'REC-2024-007', date: '2024-12-06', party: 'Healing Touch Clinic', amount: 1922,  mode: 'Cash',          utr: '-',              bank: '-',         status: 'Cleared', against: 'INV-2024-1020', remarks: '' },
+]
+
+export const creditDebitNotes = [
+  { id: 'CN-2024-001', date: '2024-12-08', type: 'Credit', party: 'MedCare Pharmacy',     against: 'INV-2024-1026', amount: 640,  reason: 'Sales Return – Damaged Goods', status: 'Approved', gst: 28.80 },
+  { id: 'CN-2024-002', date: '2024-12-07', type: 'Credit', party: 'Apollo Pharmacy',      against: 'INV-2024-1023', amount: 320,  reason: 'Price Difference Adjustment',  status: 'Approved', gst: 14.40 },
+  { id: 'DN-2024-001', date: '2024-12-09', type: 'Debit',  party: 'MedPharm Distributors', against: 'PO-2024-002',  amount: 1200, reason: 'Short Quantity Received',      status: 'Pending',  gst: 54.00 },
+  { id: 'DN-2024-002', date: '2024-12-06', type: 'Debit',  party: 'PharmaCo Ltd',         against: 'PO-2024-005',  amount: 850,  reason: 'Quality Rejection',            status: 'Approved', gst: 38.25 },
+]
+
+export const trialBalanceData = [
+  { account: 'Sales Revenue',        group: 'Income',            openingDr: 0,      openingCr: 0,      debit: 0,      credit: 528000, closingDr: 0,      closingCr: 528000 },
+  { account: 'Purchase Accounts',    group: 'Expense',           openingDr: 0,      openingCr: 0,      debit: 358000, credit: 0,      closingDr: 358000, closingCr: 0      },
+  { account: 'Sundry Debtors',       group: 'Current Asset',     openingDr: 45000,  openingCr: 0,      debit: 62000,  credit: 48000,  closingDr: 59000,  closingCr: 0      },
+  { account: 'Sundry Creditors',     group: 'Current Liability', openingDr: 0,      openingCr: 28000,  debit: 85000,  credit: 112000, closingDr: 0,      closingCr: 55000  },
+  { account: 'Cash in Hand',         group: 'Cash & Bank',       openingDr: 12500,  openingCr: 0,      debit: 9412,   credit: 8250,   closingDr: 13662,  closingCr: 0      },
+  { account: 'Bank Account (HDFC)',  group: 'Cash & Bank',       openingDr: 185000, openingCr: 0,      debit: 98240,  credit: 124500, closingDr: 158740, closingCr: 0      },
+  { account: 'GST Payable (CGST)',   group: 'Tax Liability',     openingDr: 0,      openingCr: 8500,   debit: 8500,   credit: 12400,  closingDr: 0,      closingCr: 12400  },
+  { account: 'GST Payable (SGST)',   group: 'Tax Liability',     openingDr: 0,      openingCr: 8500,   debit: 8500,   credit: 12400,  closingDr: 0,      closingCr: 12400  },
+  { account: 'Input Tax Credit',     group: 'Tax Asset',         openingDr: 6200,   openingCr: 0,      debit: 18500,  credit: 0,      closingDr: 24700,  closingCr: 0      },
+  { account: 'Capital Account',      group: 'Capital',           openingDr: 0,      openingCr: 500000, debit: 0,      credit: 0,      closingDr: 0,      closingCr: 500000 },
+]
+
+export const outstandingData = [
+  { party: 'City Hospital',       type: 'Customer', invoices: 2, '0-30': 4826,  '31-60': 0,     '61-90': 0, '90+': 0, total: 4826  },
+  { party: 'Sunrise Hospital',    type: 'Customer', invoices: 1, '0-30': 18365, '31-60': 0,     '61-90': 0, '90+': 0, total: 18365 },
+  { party: 'General Hospital',    type: 'Customer', invoices: 1, '0-30': 0,     '31-60': 42290, '61-90': 0, '90+': 0, total: 42290 },
+  { party: 'Metro Pharmacy',      type: 'Customer', invoices: 1, '0-30': 5559,  '31-60': 0,     '61-90': 0, '90+': 0, total: 5559  },
+  { party: 'PharmaCo Ltd',        type: 'Vendor',   invoices: 3, '0-30': 55300, '31-60': 0,     '61-90': 0, '90+': 0, total: 55300 },
+  { party: 'MedPharm Distributors', type: 'Vendor', invoices: 1, '0-30': 32000, '31-60': 0,     '61-90': 0, '90+': 0, total: 32000 },
+  { party: 'HealthCare Suppliers', type: 'Vendor',  invoices: 1, '0-30': 67200, '31-60': 0,     '61-90': 0, '90+': 0, total: 67200 },
+]
+
+export const eInvoiceData = [
+  { id: 'INV-2024-1028', date: '2024-12-10', party: 'City Hospital',     gstin: '27AABCH1234A1ZP', amount: 4826,  irn: 'IRN2412100028182838485900001', ackNo: 'ACK20241200001', ackDate: '2024-12-10', ewayBill: 'EWB24121000028', status: 'Generated' },
+  { id: 'INV-2024-1026', date: '2024-12-09', party: 'MedCare Pharmacy',  gstin: '29XYZPH5678B1ZQ', amount: 8860,  irn: 'IRN2412090026123456789000002', ackNo: 'ACK20241200002', ackDate: '2024-12-09', ewayBill: '-',              status: 'Generated' },
+  { id: 'INV-2024-1025', date: '2024-12-09', party: 'Sunrise Hospital',  gstin: '07SRHOS9012C1ZR', amount: 18365, irn: '',                              ackNo: '',              ackDate: '',            ewayBill: '',               status: 'Pending'   },
+  { id: 'INV-2024-1023', date: '2024-12-08', party: 'Apollo Pharmacy',   gstin: '27APPOL1234X1ZM', amount: 12707, irn: 'IRN2412080023112233445500003', ackNo: 'ACK20241200003', ackDate: '2024-12-08', ewayBill: '-',              status: 'Generated' },
+  { id: 'INV-2024-1022', date: '2024-12-07', party: 'General Hospital',  gstin: '06ABCDE9012C1ZR', amount: 42290, irn: 'IRN2412070022109876543200004', ackNo: 'ACK20241200004', ackDate: '2024-12-07', ewayBill: 'EWB24120700022', status: 'Generated' },
+  { id: 'INV-2024-1019', date: '2024-12-06', party: 'Metro Pharmacy',    gstin: '27METRO5678Y1ZN', amount: 5559,  irn: '',                              ackNo: '',              ackDate: '',            ewayBill: '',               status: 'Pending'   },
+]
+
+export const vendorPurchases = [
+  { id: 'VP-2024-001', date: '2024-12-08', vendor: 'Global Pharma Imports',  category: 'Medicine', items: 6,  amount: 125000, gst: 6250, total: 131250, status: 'In Transit', paymentStatus: 'Advance Paid' },
+  { id: 'VP-2024-002', date: '2024-12-05', vendor: 'PharmaCo Ltd',           category: 'Medicine', items: 12, amount: 48500,  gst: 2425, total: 50925,  status: 'Received',   paymentStatus: 'Paid'         },
+  { id: 'VP-2024-003', date: '2024-12-03', vendor: 'MedPharm Distributors',  category: 'Medicine', items: 8,  amount: 32000,  gst: 1600, total: 33600,  status: 'Received',   paymentStatus: 'Pending'      },
+  { id: 'VP-2024-004', date: '2024-12-01', vendor: 'HealthCare Suppliers',   category: 'Others',   items: 5,  amount: 12500,  gst: 2250, total: 14750,  status: 'Received',   paymentStatus: 'Paid'         },
+  { id: 'VP-2024-005', date: '2024-11-28', vendor: 'Sunrise Medical',        category: 'Medicine', items: 10, amount: 41800,  gst: 2090, total: 43890,  status: 'Received',   paymentStatus: 'Paid'         },
+  { id: 'VP-2024-006', date: '2024-11-25', vendor: 'BioMed Enterprises',     category: 'Others',   items: 4,  amount: 8900,   gst: 1602, total: 10502,  status: 'Partial',    paymentStatus: 'Partial'      },
+]
+
+export const gstB2BData = [
+  { gstin: '27AABCH1234A1ZP', party: 'City Hospital',     invoices: 2, taxable: 8900,  cgst: 400.5, sgst: 400.5, igst: 0,      total: 9701  },
+  { gstin: '29XYZPH5678B1ZQ', party: 'MedCare Pharmacy',  invoices: 1, taxable: 8200,  cgst: 369,   sgst: 369,   igst: 0,      total: 8938  },
+  { gstin: '06ABCDE9012C1ZR', party: 'General Hospital',  invoices: 1, taxable: 38500, cgst: 0,     sgst: 0,     igst: 1732.5, total: 40232 },
+  { gstin: '27APPOL1234X1ZM', party: 'Apollo Pharmacy',   invoices: 1, taxable: 11000, cgst: 495,   sgst: 495,   igst: 0,      total: 11990 },
+  { gstin: '07SRHOS9012C1ZR', party: 'Sunrise Hospital',  invoices: 1, taxable: 17200, cgst: 0,     sgst: 0,     igst: 774,    total: 17974 },
+]
+
+export const misSalesData = [
+  { month: 'Jul 2024', medicine: 285000, others: 42000, total: 327000, invoices: 88,  customers: 38 },
+  { month: 'Aug 2024', medicine: 265000, others: 38500, total: 303500, invoices: 82,  customers: 35 },
+  { month: 'Sep 2024', medicine: 318000, others: 52000, total: 370000, invoices: 96,  customers: 42 },
+  { month: 'Oct 2024', medicine: 342000, others: 48000, total: 390000, invoices: 104, customers: 44 },
+  { month: 'Nov 2024', medicine: 368000, others: 55000, total: 423000, invoices: 112, customers: 48 },
+  { month: 'Dec 2024', medicine: 398000, others: 62000, total: 460000, invoices: 128, customers: 55 },
+]

@@ -37,7 +37,7 @@ function Modal({ open, onClose, children }) {
   if (!open) return null
   return (
     <div className="modal-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
-      <div className="modal-box max-w-2xl w-full mx-4">{children}</div>
+      <div className="modal-box sm:!max-w-2xl">{children}</div>
     </div>
   )
 }
@@ -62,8 +62,8 @@ function ProductForm({ initial, onSave, onClose }) {
         <button onClick={onClose} className="btn-icon"><X size={20} /></button>
       </div>
       <div className="modal-body space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="sm:col-span-2">
             <label className="form-label">Medicine Name *</label>
             <input className="form-input" placeholder="e.g. Paracetamol 500mg" value={form.name} onChange={e => set('name', e.target.value)} />
           </div>

@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Inventory from './pages/Inventory'
 import Sales from './pages/Sales'
 import Suppliers from './pages/Suppliers'
+import Accounts from './pages/Accounts'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="inventory"  element={<Inventory />} />
             <Route path="sales"      element={<Sales />} />
             <Route path="suppliers"  element={<Suppliers />} />
+            <Route path="accounts"   element={<Accounts />} />
             <Route path="reports"    element={<Reports />} />
             <Route path="settings"   element={<Settings />} />
           </Route>
