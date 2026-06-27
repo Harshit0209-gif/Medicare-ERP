@@ -7,12 +7,12 @@ import clsx from 'clsx'
 
 const navItems = [
   { label: 'Dashboard', to: '/dashboard', icon: LayoutDashboard },
-  { label: 'Inventory',  to: '/inventory',  icon: Package },
-  { label: 'Sales',      to: '/sales',      icon: ShoppingCart },
-  { label: 'Suppliers',  to: '/suppliers',  icon: Truck },
-  { label: 'Accounts',   to: '/accounts',   icon: Wallet },
-  { label: 'Reports',    to: '/reports',    icon: BarChart2 },
-  { label: 'Settings',   to: '/settings',   icon: Settings },
+  { label: 'Inventory', to: '/inventory', icon: Package },
+  { label: 'Sales & Billing', to: '/sales', icon: ShoppingCart },
+  { label: 'Suppliers', to: '/suppliers', icon: Truck },
+  { label: 'Accounts', to: '/accounts', icon: Wallet },
+  { label: 'Reports', to: '/reports', icon: BarChart2 },
+  { label: 'Settings', to: '/settings', icon: Settings },
 ]
 
 export default function Sidebar({ collapsed, onToggle, mobileOpen, onMobileClose, user, onLogout }) {

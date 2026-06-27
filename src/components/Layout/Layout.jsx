@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useState, useRef, useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
 import BottomNav from './BottomNav'
@@ -7,6 +7,12 @@ import BottomNav from './BottomNav'
 export default function Layout({ user, onLogout }) {
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const mainRef = useRef(null)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (mainRef.current) mainRef.current.scrollTop = 0
+  }, [location.pathname])
 
   return (
     <div className="min-h-screen bg-app">
@@ -36,7 +42,7 @@ export default function Layout({ user, onLogout }) {
           onLogout={onLogout}
           onMenuOpen={() => setMobileOpen(true)}
         />
-        <main className="flex-1 p-4 lg:p-6 pb-20 lg:pb-6 overflow-auto">
+        <main ref={mainRef} className="flex-1 p-4 lg:p-6 pb-20 lg:pb-6 overflow-auto">
           <Outlet />
         </main>
       </div>
