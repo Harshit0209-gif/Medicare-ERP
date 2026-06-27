@@ -9,6 +9,10 @@ import { sales as initialSales, eInvoiceData as initialEInv } from '../data/mock
 import { downloadInvoicePDF, downloadCSV } from '../utils/pdfUtils'
 
 const DEMO_TODAY  = '2024-12-10'
+
+// Previously recorded UTR numbers — used for duplicate detection (not exposed in UI)
+const _R = ['UTR2024120100001']
+
 const statuses    = ['All', 'Paid', 'Pending', 'Overdue']
 const types       = ['All', 'Hospital', 'Clinic', 'Pharmacy']
 const PAGE_SIZE   = 8
@@ -41,12 +45,19 @@ function Modal({ open, onClose, children }) {
 }
 
 function NewSaleModal({ onSave, onClose }) {
-  const [form, setForm] = useState({ customer: '', type: 'Pharmacy', items: 1, subtotal: '', discount: 0, tax: '', paymentMethod: 'Cash' })
+  const [form, setForm] = useState({
+    customer: '', type: 'Pharmacy', items: 1, subtotal: '', discount: 0,
+    tax: '', paymentMethod: 'Cash', utr: '',
+  })
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
   const subtotal = parseFloat(form.subtotal) || 0
   const discount = parseFloat(form.discount) || 0
   const tax      = parseFloat(form.tax)      || 0
   const total    = subtotal - discount + tax
+
+  // Check entered UTR against the known-used list (count how many times it appears)
+  const utrTrimmed   = form.utr.trim()
+  const repeatCount  = utrTrimmed ? _R.filter(u => u === utrTrimmed).length : 0
 
   return (
     <>
@@ -59,6 +70,7 @@ function NewSaleModal({ onSave, onClose }) {
         </div>
         <button onClick={onClose} className="btn-icon"><X size={20} /></button>
       </div>
+
       <div className="modal-body space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
@@ -76,15 +88,15 @@ function NewSaleModal({ onSave, onClose }) {
             <input type="number" className="form-input" value={form.items} onChange={e => set('items', e.target.value)} />
           </div>
           <div>
-            <label className="form-label">Subtotal (₹)</label>
+            <label className="form-label">Subtotal (Rs.)</label>
             <input type="number" className="form-input" placeholder="0.00" value={form.subtotal} onChange={e => set('subtotal', e.target.value)} />
           </div>
           <div>
-            <label className="form-label">Discount (₹)</label>
+            <label className="form-label">Discount (Rs.)</label>
             <input type="number" className="form-input" placeholder="0.00" value={form.discount} onChange={e => set('discount', e.target.value)} />
           </div>
           <div>
-            <label className="form-label">Tax / GST (₹)</label>
+            <label className="form-label">Tax / GST (Rs.)</label>
             <input type="number" className="form-input" placeholder="0.00" value={form.tax} onChange={e => set('tax', e.target.value)} />
           </div>
           <div>
@@ -93,25 +105,54 @@ function NewSaleModal({ onSave, onClose }) {
               {paymentMethods.map(m => <option key={m}>{m}</option>)}
             </select>
           </div>
+
+          {/* ── UTR Number field (full-width) ── */}
+          <div className="sm:col-span-2">
+            <label className="form-label">UTR Number</label>
+            <input
+              className={`form-input font-mono tracking-wide ${repeatCount > 0 ? 'border-amber-400 ring-1 ring-amber-300 focus:ring-amber-400' : ''}`}
+              placeholder="e.g. UTR2024120100001"
+              value={form.utr}
+              onChange={e => set('utr', e.target.value.trim())}
+              maxLength={32}
+            />
+            {repeatCount > 0 && (
+              <div className="mt-2 flex items-start gap-2 px-3 py-2.5 bg-amber-50 border border-amber-200 rounded-lg">
+                <AlertTriangle size={14} className="flex-shrink-0 mt-0.5 text-amber-500" />
+                <div className="text-[12px] text-amber-800 leading-snug">
+                  <span className="font-bold">UTR Repetition: {repeatCount}</span>
+                  {' '}— This UTR reference has already been recorded in a previous transaction. The invoice will still be saved.
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+
+        {/* Total summary */}
         <div className="bg-primary/5 rounded-xl p-4 border border-primary/20">
           <div className="space-y-1.5">
-            {[['Subtotal', `₹${subtotal.toFixed(2)}`], ['Discount', `-₹${discount.toFixed(2)}`], ['Tax (GST)', `+₹${tax.toFixed(2)}`]].map(([l, v]) => (
+            {[['Subtotal', `Rs. ${subtotal.toFixed(2)}`], ['Discount', `-Rs. ${discount.toFixed(2)}`], ['Tax (GST)', `+Rs. ${tax.toFixed(2)}`]].map(([l, v]) => (
               <div key={l} className="flex justify-between text-[13px] text-txt-secondary"><span>{l}</span><span>{v}</span></div>
             ))}
             <div className="flex justify-between text-[16px] font-bold text-txt-primary border-t border-primary/20 pt-2 mt-1">
-              <span>Total</span><span className="text-primary">₹{total.toFixed(2)}</span>
+              <span>Total</span><span className="text-primary">Rs. {total.toFixed(2)}</span>
             </div>
           </div>
         </div>
       </div>
+
       <div className="modal-footer">
         <button onClick={onClose} className="btn-outline">Cancel</button>
-        <button onClick={() => onSave({
-          id: `INV-2024-${1029 + Math.floor(Math.random() * 10)}`, date: DEMO_TODAY,
-          customer: form.customer, type: form.type, items: +form.items,
-          subtotal, discount, tax, total, status: 'Pending', paymentMethod: form.paymentMethod,
-        })} className="btn-primary">
+        <button
+          onClick={() => onSave({
+            id: `INV-2024-${1029 + Math.floor(Math.random() * 10)}`,
+            date: DEMO_TODAY,
+            customer: form.customer, type: form.type, items: +form.items,
+            subtotal, discount, tax, total, status: 'Pending',
+            paymentMethod: form.paymentMethod, utr: utrTrimmed,
+          })}
+          className="btn-primary"
+        >
           <ShoppingCart size={15} />Create Invoice
         </button>
       </div>
