@@ -3,9 +3,10 @@ import {
   Search, Plus, Edit2, Trash2, X, Download,
   ShoppingCart, ChevronLeft, ChevronRight,
   CheckCircle, Clock, AlertTriangle, XCircle, DollarSign, Lock,
-  ChevronUp, ChevronDown, ChevronsUpDown, FileCheck, Zap,
+  ChevronUp, ChevronDown, ChevronsUpDown, FileCheck, Zap, FileText,
 } from 'lucide-react'
 import { sales as initialSales, eInvoiceData as initialEInv } from '../data/mockData'
+import { downloadInvoicePDF, downloadCSV } from '../utils/pdfUtils'
 
 const DEMO_TODAY  = '2024-12-10'
 const statuses    = ['All', 'Paid', 'Pending', 'Overdue']
@@ -322,7 +323,14 @@ export default function Sales() {
           <p className="text-[13px] text-txt-muted mt-0.5">{salesData.length} invoices total</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="btn-outline btn-sm"><Download size={14} />Export</button>
+          <button
+            onClick={() => downloadCSV(
+              ['Invoice No.', 'Date', 'Customer', 'Type', 'Items', 'Subtotal', 'Discount', 'Tax', 'Total', 'Status', 'Payment'],
+              ['id', 'date', 'customer', 'type', 'items', 'subtotal', 'discount', 'tax', 'total', 'status', 'paymentMethod'],
+              sorted, 'sales_invoices'
+            )}
+            className="btn-outline btn-sm"
+          ><Download size={14} />Export CSV</button>
           {activeTab === 'Sales Invoices' && <button onClick={() => setModal('new')} className="btn-primary"><Plus size={16} />New Invoice</button>}
         </div>
       </div>
@@ -429,6 +437,13 @@ export default function Sales() {
                         </td>
                         <td>
                           <div className="flex items-center justify-center gap-1.5">
+                            <button
+                              onClick={() => downloadInvoicePDF(s)}
+                              title="Download Invoice PDF"
+                              className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[12px] font-medium text-green-700 bg-green-50 hover:bg-green-100 transition-colors"
+                            >
+                              <FileText size={13} />PDF
+                            </button>
                             <button
                               onClick={() => handleEditClick(s)}
                               title={!editable ? 'Edit window expired (24h limit)' : ''}

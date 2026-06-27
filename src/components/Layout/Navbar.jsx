@@ -5,11 +5,11 @@ import { ChevronDown, LogOut, User, Settings, Menu } from 'lucide-react'
 const pageTitles = {
   '/dashboard': 'Dashboard',
   '/inventory': 'Inventory',
-  '/sales':     'Sales & Billing',
+  '/sales': 'Sales & Billing',
   '/suppliers': 'Suppliers',
-  '/accounts':  'Accounts',
-  '/reports':   'Reports',
-  '/settings':  'Settings',
+  '/accounts': 'Accounts',
+  '/reports': 'Reports',
+  '/settings': 'Settings',
 }
 
 export default function Navbar({ user, onLogout, onMenuOpen }) {
@@ -52,10 +52,10 @@ export default function Navbar({ user, onLogout, onMenuOpen }) {
             <p className="text-[13px] font-semibold text-txt-primary leading-tight">{user?.name}</p>
             <p className="text-[11px] text-txt-muted">{user?.role}</p>
           </div>
-          <ChevronDown size={13} className={`text-txt-muted transition-transform duration-200 ${showUser ? 'rotate-180' : ''}`} />
+          {/* <ChevronDown size={13} className={`text-txt-muted transition-transform duration-200 ${showUser ? 'rotate-180' : ''}`} /> */}
         </button>
 
-        {showUser && (
+        {/* {showUser && (
           <>
             <div className="fixed inset-0 z-30" onClick={() => setShowUser(false)} />
             <div className="absolute right-0 top-11 lg:top-12 w-48 bg-white rounded-xl shadow-dropdown border border-border z-40 animate-fadeIn overflow-hidden">
@@ -81,7 +81,7 @@ export default function Navbar({ user, onLogout, onMenuOpen }) {
               </div>
             </div>
           </>
-        )}
+        )} */}
       </div>
     </header>
   )

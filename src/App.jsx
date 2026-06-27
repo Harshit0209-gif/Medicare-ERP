@@ -10,21 +10,25 @@ import Suppliers from './pages/Suppliers'
 import Accounts from './pages/Accounts'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
+import SplashScreen from './components/SplashScreen'
 
 export default function App() {
+  const [splash, setSplash] = useState(true)
   const [user, setUser] = useState(() => {
-    try { return JSON.parse(sessionStorage.getItem('medicare_user')) } catch { return null }
+    try { return JSON.parse(sessionStorage.getItem('gobt_user')) } catch { return null }
   })
 
   const handleLogin = (userData) => {
-    sessionStorage.setItem('medicare_user', JSON.stringify(userData))
+    sessionStorage.setItem('gobt_user', JSON.stringify(userData))
     setUser(userData)
   }
 
   const handleLogout = () => {
-    sessionStorage.removeItem('medicare_user')
+    sessionStorage.removeItem('gobt_user')
     setUser(null)
   }
+
+  if (splash) return <SplashScreen onDone={() => setSplash(false)} />
 
   if (!user) return <Login onLogin={handleLogin} />
 

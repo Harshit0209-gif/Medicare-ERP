@@ -6,20 +6,10 @@ import {
 } from 'recharts'
 import { Download, TrendingUp, TrendingDown, Calendar } from 'lucide-react'
 import { revenueData, stockByCategory, salesByCategory, products, gstB2BData, misSalesData } from '../data/mockData'
+import { downloadCSV } from '../utils/pdfUtils'
 
 const PIE_COLORS = ['#2563EB', '#10B981', '#8B5CF6', '#F59E0B', '#EF4444', '#0F766E']
 const TABS = ['Revenue', 'Inventory', 'Sales', 'Expiry', 'GST Report', 'Sales MIS']
-
-function downloadCSV(headers, keys, rows, filename) {
-  const lines = [headers.join(','), ...rows.map(r => keys.map(k => `"${r[k] ?? ''}"`).join(','))]
-  const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = `${filename}.csv`
-  document.body.appendChild(a); a.click(); document.body.removeChild(a)
-  URL.revokeObjectURL(url)
-}
 
 const expiryRisk = [
   { range: 'Expired', count: 2, color: '#EF4444' },
@@ -104,7 +94,21 @@ export default function Reports() {
               {['This Month', 'Last Month', 'This Quarter', 'This Year'].map(p => <option key={p}>{p}</option>)}
             </select>
           </div>
-          <button className="btn-primary btn-sm"><Download size={15} />Export Report</button>
+          <button
+            onClick={() => {
+              const exports = {
+                Revenue:      [['Month', 'Revenue (₹)', 'Expenses (₹)', 'Profit (₹)'], ['month', 'revenue', 'expenses', 'profit'], revenueData, 'revenue_report'],
+                Inventory:    [['Name', 'Category', 'Stock', 'Value (₹)'], ['category', 'category', 'stock', 'value'], stockByCategory, 'inventory_stock'],
+                Sales:        [['Month', 'Invoices', 'Customers'], ['month', 'invoices', 'customers'], monthlySalesCount, 'sales_report'],
+                Expiry:       [['Name', 'Category', 'Batch', 'Expiry', 'Stock'], ['name', 'category', 'batch', 'expiry', 'stock'], products.filter(p => new Date(p.expiry) < new Date(Date.now() + 180 * 86400000)), 'expiry_report'],
+                'GST Report': [['GSTIN', 'Party', 'Invoices', 'Taxable (₹)', 'CGST (₹)', 'SGST (₹)', 'IGST (₹)', 'Total Tax (₹)'], ['gstin', 'party', 'invoices', 'taxable', 'cgst', 'sgst', 'igst', 'total'], gstB2BData, 'gst_b2b_report'],
+                'Sales MIS':  [['Month', 'Medicine (₹)', 'Others (₹)', 'Total (₹)', 'Invoices', 'Customers'], ['month', 'medicine', 'others', 'total', 'invoices', 'customers'], misSalesData, 'sales_mis_report'],
+              }
+              const [headers, keys, rows, filename] = exports[tab]
+              downloadCSV(headers, keys, rows, filename)
+            }}
+            className="btn-primary btn-sm"
+          ><Download size={15} />Export Report</button>
         </div>
       </div>
 

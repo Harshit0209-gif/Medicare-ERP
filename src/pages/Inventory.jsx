@@ -5,6 +5,7 @@ import {
   AlertTriangle, ChevronUp, ChevronDown, ChevronsUpDown,
 } from 'lucide-react'
 import { products as initialProducts } from '../data/mockData'
+import { downloadCSV } from '../utils/pdfUtils'
 
 const categories = ['All', 'Analgesics', 'Antibiotics', 'Antidiabetics', 'Cardiovascular', 'Gastrointestinal', 'Antihistamines', 'Vitamins', 'Respiratory']
 const statuses   = ['All', 'In Stock', 'Low Stock', 'Expired']
@@ -180,7 +181,14 @@ export default function Inventory() {
           <p className="text-[13px] text-txt-muted mt-0.5">{products.length} products · {products.filter(p => p.status === 'In Stock').length} in stock</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="btn-outline btn-sm"><Download size={14} />Export</button>
+          <button
+            onClick={() => downloadCSV(
+              ['Name', 'Category', 'Manufacturer', 'Batch', 'Expiry', 'Stock', 'Min Stock', 'Price (₹)', 'Cost Price (₹)', 'Status'],
+              ['name', 'category', 'manufacturer', 'batch', 'expiry', 'stock', 'minStock', 'price', 'costPrice', 'status'],
+              sorted, 'inventory_products'
+            )}
+            className="btn-outline btn-sm"
+          ><Download size={14} />Export CSV</button>
           <button onClick={() => { setSelectedProduct(null); setModal('add') }} className="btn-primary">
             <Plus size={16} />Add Product
           </button>
